@@ -11,7 +11,7 @@ import { LibrosService } from '../servicios/libros.service';
 export class LibrosPage implements OnInit {
 
   @ViewChild(IonRefresher) refresher!: IonRefresher;
-
+ 
   public listaLibros: Libro[] = [];
   public cargandoLibros: boolean = false;
   public modalVisible: boolean = false;

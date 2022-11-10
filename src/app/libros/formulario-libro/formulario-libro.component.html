@@ -1,28 +1,30 @@
-<ion-list>
-  <ion-item>
-    <ion-label>Código:</ion-label>
-    <ion-input inputmode="number" placeholder="Ingresar..." slot="end" [(ngModel)]="id"></ion-input>
-    <ion-note *ngIf="!idValidado" slot="helper" color="danger">Ingrese un código</ion-note>
-  </ion-item>
-  <ion-item>
-    <ion-label>Título:</ion-label>
-    <ion-input inputmode="text" placeholder="Ingresar..." slot="end" [(ngModel)]="titulo"></ion-input>
-    <ion-note *ngIf="t!ituloValidado" slot="helper" color="danger">Ingrese un título</ion-note>
-  </ion-item>
-  <ion-item>
-    <ion-label>Autor:</ion-label>
-    <ion-select placeholder="Seleccionar..." slot="end" [(ngModel)]="idautor">
-      <ion-select-option *ngFor="let autor of listaAutores" [value]="autor.id">{{autor.nombre}}</ion-select-option>
-    </ion-select>
-    <ion-note *ngIf="!idautorValidado" slot="helper" color="danger">Seleccione un autor</ion-note>
-  </ion-item>
-  <ion-item>
-    <ion-label>N° de páginas:</ion-label>
-    <ion-input inputmode="number" placeholder="Ingresar..." slot="end" [(ngModel)]="paginas"></ion-input>
-    <ion-note *ngIf="!paginasValidado" slot="helper" color="danger">Ingrese el N° de páginas</ion-note>
-  </ion-item>
-</ion-list>
-<ion-button expand="full" shape="round" (click)="guardar()">
-  <ion-icon name="save" slot="start"></ion-icon>
-  Guardar
-</ion-button>
+<form [formGroup]="form">
+  <ion-list>
+    <ion-item fill="outline">
+      <ion-label position="floating">Código</ion-label>
+      <ion-input inputmode="number" type="number" placeholder="Ingresar..." formControlName="idCtrl"></ion-input>
+      <ion-note slot="error" *ngIf="form.controls.idCtrl.touched">Ingrese un código.</ion-note>
+    </ion-item>
+    <ion-item fill="outline" class="item-espaciado">
+      <ion-label position="floating">Título</ion-label>
+      <ion-input inputmode="text" placeholder="Ingresar..." formControlName="tituloCtrl"></ion-input>
+      <ion-note slot="error" *ngIf="form.controls.tituloCtrl.touched">Ingrese un título.</ion-note>
+    </ion-item>
+    <ion-item fill="outline" class="item-espaciado">
+      <ion-label position="floating">Autor</ion-label>
+      <ion-select formControlName="idautorCtrl">
+        <ion-select-option *ngFor="let autor of listaAutores" [value]="autor.id">{{autor.nombre}}</ion-select-option>
+      </ion-select>
+      <ion-note slot="error" *ngIf="form.controls.idautorCtrl.touched">Seleccione un autor.</ion-note>
+    </ion-item>
+    <ion-item fill="outline" class="item-espaciado">
+      <ion-label position="floating">N° de páginas</ion-label>
+      <ion-input inputmode="number" type="number" placeholder="Ingresar..." formControlName="paginasCtrl"></ion-input>
+      <ion-note slot="error" *ngIf="form.controls.paginasCtrl.touched">Ingrese el N° de páginas.</ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" shape="round" (click)="guardar()">
+    <ion-icon name="save" slot="start"></ion-icon>
+    Guardar
+  </ion-button>
+</form>
